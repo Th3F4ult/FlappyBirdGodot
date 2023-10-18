@@ -6,7 +6,7 @@
 extends CharacterBody2D
 
 @onready var fly = $AnimatedSprite2D
-
+@onready var GlobalVars = get_node("/root/Global")
 const SPEED = 300.0
 const JUMP_VELOCITY = -1200.0
 var HasGameStarted = false # Hacky stuff that just KINDA works ig
@@ -17,6 +17,7 @@ var gravity = 0
 
 func _ready():
 	fly.play("doingnothing") # doingnothing is just the wing movement in question
+	GlobalVars.isDead = false
 #	fly.connect(animation_finished , self, function)
 #
 #func function():

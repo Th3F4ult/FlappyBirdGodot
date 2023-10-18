@@ -19,7 +19,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-FlappyBirdScene="*res://FlappyBird/FlappyBirdScene.gd"
+Global="*res://Global.gd"
 
 [display]
 
