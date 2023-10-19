@@ -28,12 +28,20 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
+
+		if velocity.y >= 0 and HasGameStarted:
+			fly.rotation=70
+		elif velocity.y <= 0 and HasGameStarted: 
+			fly.rotation = 75
+		print(velocity.y)
+
 	if Input.is_action_just_pressed("clickedortapped") and HasGameStarted:
 		velocity.y = -1200
 		$"../Flap".play()
-		fly.rotation=75
-		$"../Timer".start()
+		
+#		fly.rotation=75
+
+		
 # Move the sprite up and down (To simulate going up and down)
 	move_and_slide()
 
@@ -66,6 +74,7 @@ func _on_thing_that_kills_us_body_entered(body):
 			$"../DeathAudio".play()
 			HasAudioPlayed = true
 			$"../TextureButton".visible = false
+			$"../Timer".start()
 
 
 func _on_area_2d_body_exited(body):
@@ -77,10 +86,11 @@ func _on_area_2d_body_exited(body):
 			$"../DeathAudio".play()
 			HasAudioPlayed = true
 			$"../TextureButton".visible = false
+			$"../Timer".start()
 # These 2 functions handle death
 
 func _on_timer_timeout():
-	if HasGameStarted:
-		fly.rotation=70
-	else: # This makes sure that we're not rotated when we die
-		fly.rotation=0
+	fly.rotation = 0
+	# This is suposed to like make it stop from moving on death, but this
+	# Doesn't work, just let it rotate I guess.
+	# timer is 0.15 seconds. It can be almost whatever number from 0.1>
