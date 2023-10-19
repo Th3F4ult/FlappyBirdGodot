@@ -1,10 +1,14 @@
 # This script handles both Pipe "Generation" (Moving them to the next chunk)
 # and all the death screen logic, assigning a medal, and showing points in there.
 # "Exit" (Menu) and "Retry" (Retry) buttons are handled in  flappy_bird_scene.gd
-
-
 extends CharacterBody2D
+@onready var vars = get_node("/root/Global")
 var dif = "NoDificulty"
+var DidWeDie = false
+# We could use something like adding a new variable "LastDifficulityUsed" and check
+# if it exists, then copy it for the next game
+
+
 var points = 0 # We set up the "points" variable, this is where we store the points
 var PIPERNG=RandomNumberGenerator.new() # RNG stuff
 #var pipe_scene = preload("res://FlappyBird/OtherPipes.tscn")
@@ -40,36 +44,46 @@ func _physics_process(delta):
 
 
 func DEATH():
-	#print("This person died")
-	# Debugging stuff
-	velocity.x = 0 # Stop the pipe
-	$"../MenuButton/FINALPOINTS".text = str(points) # Show the score
-	if points < 6:
-		$"../MenuButton/Medal4".visible = false
-		$"../MenuButton/Medal3".visible = false 
-		$"../MenuButton/Medal1".visible = false
-		$"../MenuButton/Medal2".visible = false
-# If we have less than 6, (5 or less) we have no medal
-	if points < 11 and points > 5:
-		$"../MenuButton/Medal4".visible = false
-		$"../MenuButton/Medal3".visible = false 
-		$"../MenuButton/Medal2".visible = false
-	elif points > 10 and points < 21:
-		$"../MenuButton/Medal4".visible = false
-		$"../MenuButton/Medal3".visible = false 
-		$"../MenuButton/Medal1".visible = false
-	elif points > 20 and points < 31:
-		$"../MenuButton/Medal4".visible = false
-		$"../MenuButton/Medal1".visible = false 
-		$"../MenuButton/Medal2".visible = false
+	if not DidWeDie: 
+		DidWeDie = true
+		vars.lastDif = dif
+		print(dif," > lastDif (",vars.lastDif,")")
+		# We save the last difficulty
+			# It's in reverse fucking idiot - Me to me
+		#print("This person died")
+		# Debugging stuff
+		velocity.x = 0 # Stop the pipe
+		$"../MenuButton/FINALPOINTS".text = str(points) # Show the score
+		if points < 6:
+			$"../MenuButton/Medal4".visible = false
+			$"../MenuButton/Medal3".visible = false 
+			$"../MenuButton/Medal1".visible = false
+			$"../MenuButton/Medal2".visible = false
+	# If we have less than 6, (5 or less) we have no medal
+		if points < 11 and points > 5:
+			$"../MenuButton/Medal4".visible = false
+			$"../MenuButton/Medal3".visible = false 
+			$"../MenuButton/Medal2".visible = false
+		elif points > 10 and points < 21:
+			$"../MenuButton/Medal4".visible = false
+			$"../MenuButton/Medal3".visible = false 
+			$"../MenuButton/Medal1".visible = false
+		elif points > 20 and points < 31:
+			$"../MenuButton/Medal4".visible = false
+			$"../MenuButton/Medal1".visible = false 
+			$"../MenuButton/Medal2".visible = false
+		else:
+			$"../MenuButton/Medal2".visible = false
+			$"../MenuButton/Medal3".visible = false 
+			$"../MenuButton/Medal1".visible = false
+	# Maybe this could be done BETTER with arrays, something like
+	# var Medals = [../MenuButton/Medal1, ../MenuButton/Medal2...] but I'm too
+	# lazy to actually do it
+		dif = null
+	# Now that we've got all this we could maybe MAYBE keep it saved in the user's data
+	# That way if you close the program and open it again it keeps your difficulty
 	else:
-		$"../MenuButton/Medal2".visible = false
-		$"../MenuButton/Medal3".visible = false 
-		$"../MenuButton/Medal1".visible = false
-# Maybe this could be done BETTER with arrays, something like
-# var Medals = [../MenuButton/Medal1, ../MenuButton/Medal2...] but I'm too
-# lazy to actually do it
-	dif = "STOPGAME"
+		print("We're already dead, not dying again")
 
 func AddPoints():
 	points = points + 1
@@ -96,8 +110,11 @@ func _on_thing_that_counts_our_points_body_entered(body):
 
 
 func _on_start_btn_pressed():
-	dif = "M"
-
+	if not vars.lastDif == null:
+		dif = vars.lastDif
+	else:
+		dif = "M"
+	print("Starting on ", dif, " difficulty")
 
 func _on_thing_that_dings_body_entered(body):
 	if body.is_in_group("bird"):
