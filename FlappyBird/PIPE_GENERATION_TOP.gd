@@ -24,7 +24,8 @@ func _ready():
 	$"../POINTS".add_theme_constant_override("outline_size",8)
 
 func _physics_process(delta):
-	print(velocity.x, " Dif: ", dif)
+	#print(velocity.x, " Dif: ", dif)
+	#Stop spamming
 	if dif == "E":
 		velocity.x = -400
 	elif dif == "M":
@@ -33,6 +34,8 @@ func _physics_process(delta):
 		velocity.x = -1200
 	else:
 		velocity.x = 0 
+	# This last one is here just in case I missed anything, to have a safe value
+	# and not have the pipes stuck in nowhere forever
 	move_and_slide() # This is basically... the thing that makes it move
 
 
@@ -94,8 +97,7 @@ func _on_thing_that_counts_our_points_body_entered(body):
 
 func _on_start_btn_pressed():
 	dif = "M"
-		# This is here just in case I missed anything, to have a safe value
-		# and not have the pipes stuck in nowhere forever
+
 
 func _on_thing_that_dings_body_entered(body):
 	if body.is_in_group("bird"):

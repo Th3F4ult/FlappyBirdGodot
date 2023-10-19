@@ -168,6 +168,7 @@ offset_right = 505.0
 offset_bottom = 903.0
 
 [node name="MediumButton" type="TextureButton" parent="PauseScreen"]
+layout_mode = 0
 offset_left = 323.0
 offset_top = 905.0
 offset_right = 656.0
