@@ -33,8 +33,9 @@ func _physics_process(delta):
 			fly.rotation=70
 		elif velocity.y <= 0 and HasGameStarted: 
 			fly.rotation = 75
-		print(velocity.y)
-
+		#print(velocity.y)
+		# This spams
+		# Also this chunk of code rotates the sprite acordingly
 	if Input.is_action_just_pressed("clickedortapped") and HasGameStarted:
 		velocity.y = -1200
 		$"../Flap".play()
