@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://deh4pg0c145ul"]
+[gd_scene load_steps=37 format=3 uid="uid://deh4pg0c145ul"]
 
 [ext_resource type="Script" path="res://FlappyBird/flappy_bird_scene.gd" id="1_78h6s"]
 [ext_resource type="Script" path="res://FlappyBird/PARALLAX.gd" id="2_jl8a7"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://sswwahwab7oq" path="res://FlappyBird/assets/BUTTONS_AND_UI/PauseButton.png" id="12_otkhg"]
 [ext_resource type="Texture2D" uid="uid://cd7xvksvtd7fq" path="res://FlappyBird/assets/BUTTONS_AND_UI/PauseButtonPressed.png" id="13_qa48g"]
 [ext_resource type="Texture2D" uid="uid://vkni07jxvcmg" path="res://FlappyBird/assets/BUTTONS_AND_UI/UnPause.png" id="14_5i4gh"]
+[ext_resource type="Texture2D" uid="uid://0588akrpa2i7" path="res://FlappyBird/assets/BUTTONS_AND_UI/DifSel.png" id="15_ii17f"]
 [ext_resource type="Texture2D" uid="uid://be7tp4a1f1ort" path="res://FlappyBird/assets/Other_Stuff_Images/PipeDOWN.png" id="16_0rj58"]
 [ext_resource type="Texture2D" uid="uid://trff4ysngiea" path="res://FlappyBird/assets/Other_Stuff_Images/PipeUP.png" id="17_mcd1l"]
 [ext_resource type="AudioStream" uid="uid://dfijvcc2c8gia" path="res://FlappyBird/assets/sound/sfx_point.mp3" id="18_3l0h0"]
@@ -149,11 +150,35 @@ offset_bottom = 40.0
 
 [node name="Unpause" type="TextureButton" parent="PauseScreen"]
 layout_mode = 0
-offset_left = 288.261
-offset_top = 770.513
-offset_right = 800.261
-offset_bottom = 1064.51
+offset_left = 300.0
+offset_top = 321.0
+offset_right = 812.0
+offset_bottom = 615.0
 texture_normal = ExtResource("14_5i4gh")
+
+[node name="Sprite2D" type="Sprite2D" parent="PauseScreen"]
+position = Vector2(578, 892)
+texture = ExtResource("15_ii17f")
+
+[node name="EasyButton" type="TextureButton" parent="PauseScreen"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 807.0
+offset_right = 505.0
+offset_bottom = 903.0
+
+[node name="MediumButton" type="TextureButton" parent="PauseScreen"]
+offset_left = 323.0
+offset_top = 905.0
+offset_right = 656.0
+offset_bottom = 1020.0
+
+[node name="HardButton" type="TextureButton" parent="PauseScreen"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 1033.0
+offset_right = 510.0
+offset_bottom = 1129.0
 
 [node name="PIPE_GENERATION_FIRST" type="CharacterBody2D" parent="."]
 script = ExtResource("9_n4kqx")
@@ -211,6 +236,7 @@ texture_normal = ExtResource("19_oparp")
 stretch_mode = 3
 
 [node name="MenuButton" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(550, 971)
 texture = ExtResource("20_8c6on")
 
@@ -271,6 +297,9 @@ stream = ExtResource("28_1fk3b")
 [connection signal="pressed" from="TextureButton" to="." method="PAUSEPRESS"]
 [connection signal="pressed" from="TextureButton" to="CharacterBody2D" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="PauseScreen/Unpause" to="." method="_on_unpause_pressed"]
+[connection signal="pressed" from="PauseScreen/EasyButton" to="PIPE_GENERATION_FIRST" method="_on_easy_button_pressed"]
+[connection signal="pressed" from="PauseScreen/MediumButton" to="PIPE_GENERATION_FIRST" method="_on_medium_button_pressed"]
+[connection signal="pressed" from="PauseScreen/HardButton" to="PIPE_GENERATION_FIRST" method="_on_hard_button_pressed"]
 [connection signal="body_entered" from="PIPE_GENERATION_FIRST/Thing_that_kills_us" to="ParallaxBackground" method="_on_thing_that_kills_us_body_entered"]
 [connection signal="body_entered" from="PIPE_GENERATION_FIRST/Thing_that_kills_us" to="CharacterBody2D" method="_on_thing_that_kills_us_body_entered"]
 [connection signal="body_entered" from="PIPE_GENERATION_FIRST/Thing_that_kills_us" to="PIPE_GENERATION_FIRST" method="_on_thing_that_kills_us_body_entered"]

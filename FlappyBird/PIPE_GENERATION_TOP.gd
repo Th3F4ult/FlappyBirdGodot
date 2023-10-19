@@ -4,6 +4,7 @@
 
 
 extends CharacterBody2D
+var dif = "NoDificulty"
 var points = 0 # We set up the "points" variable, this is where we store the points
 var PIPERNG=RandomNumberGenerator.new() # RNG stuff
 #var pipe_scene = preload("res://FlappyBird/OtherPipes.tscn")
@@ -23,6 +24,15 @@ func _ready():
 	$"../POINTS".add_theme_constant_override("outline_size",8)
 
 func _physics_process(delta):
+	print(velocity.x, " Dif: ", dif)
+	if dif == "E":
+		velocity.x = -400
+	elif dif == "M":
+		velocity.x = -800
+	elif dif == "H":
+		velocity.x = -1200
+	else:
+		velocity.x = 0 
 	move_and_slide() # This is basically... the thing that makes it move
 
 
@@ -56,6 +66,7 @@ func DEATH():
 # Maybe this could be done BETTER with arrays, something like
 # var Medals = [../MenuButton/Medal1, ../MenuButton/Medal2...] but I'm too
 # lazy to actually do it
+	dif = "STOPGAME"
 
 func AddPoints():
 	points = points + 1
@@ -82,9 +93,9 @@ func _on_thing_that_counts_our_points_body_entered(body):
 
 
 func _on_start_btn_pressed():
-		velocity.x = -800
-	
-
+	dif = "M"
+		# This is here just in case I missed anything, to have a safe value
+		# and not have the pipes stuck in nowhere forever
 
 func _on_thing_that_dings_body_entered(body):
 	if body.is_in_group("bird"):
@@ -95,3 +106,16 @@ func _on_thing_that_dings_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("bird"):
 		DEATH()
+
+
+func _on_easy_button_pressed():
+	dif = "E"
+
+
+
+func _on_medium_button_pressed():
+	dif = "M"
+
+
+func _on_hard_button_pressed():
+	dif = "H"
