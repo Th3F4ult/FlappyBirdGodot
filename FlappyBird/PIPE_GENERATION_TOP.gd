@@ -3,10 +3,11 @@
 # "Exit" (Menu) and "Retry" (Retry) buttons are handled in  flappy_bird_scene.gd
 extends CharacterBody2D
 @onready var vars = get_node("/root/Global")
-var dif = "NoDificulty"
+var dif = "NoDifficulty"
 var DidWeDie = false
 # We could use something like adding a new variable "LastDifficulityUsed" and check
 # if it exists, then copy it for the next game
+
 
 
 var points = 0 # We set up the "points" variable, this is where we store the points
@@ -54,11 +55,12 @@ func DEATH():
 		# Debugging stuff
 		velocity.x = 0 # Stop the pipe
 		$"../MenuButton/FINALPOINTS".text = str(points) # Show the score
+		
+		var HideableMedals = ["../MenuButton/Medal1", "../MenuButton/Medal2", "../MenuButton/Medal3", "../MenuButton/Medal4"]
+		
 		if points < 6:
-			$"../MenuButton/Medal4".visible = false
-			$"../MenuButton/Medal3".visible = false 
-			$"../MenuButton/Medal1".visible = false
-			$"../MenuButton/Medal2".visible = false
+			for i in HideableMedals:
+				get_node(i).visible = false
 	# If we have less than 6, (5 or less) we have no medal
 		if points < 11 and points > 5:
 			$"../MenuButton/Medal4".visible = false
@@ -88,53 +90,29 @@ func DEATH():
 func AddPoints():
 	points = points + 1
 	$"../POINTS".text = str(points)
-#func RefreshCounter():
-#	$"../POINTS".text = str(points)
-# Maybe we could do this with just a single function?
-
 func _on_thing_that_kills_us_body_entered(ThingThatEnteredTheArea):
 	if ThingThatEnteredTheArea.is_in_group("bird"):
 		DEATH()
-
-
-
-
-
 func _on_thing_that_counts_our_points_body_entered(body):
 	if body.is_in_group("bird"):
 		position.x = position.x + 1550
 		position.y = PIPERNG.randf_range(100,1100)
-	
-
-
-
-
 func _on_start_btn_pressed():
 	if not vars.lastDif == null:
 		dif = vars.lastDif
 	else:
 		dif = "M"
 	print("Starting on ", dif, " difficulty")
-
 func _on_thing_that_dings_body_entered(body):
 	if body.is_in_group("bird"):
 		$"../DingDingDings".play()
 		AddPoints()
-
-
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("bird"):
 		DEATH()
-
-
 func _on_easy_button_pressed():
 	dif = "E"
-
-
-
 func _on_medium_button_pressed():
 	dif = "M"
-
-
 func _on_hard_button_pressed():
 	dif = "H"
