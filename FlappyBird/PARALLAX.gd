@@ -10,7 +10,7 @@ func _process(delta):
 		pass
 # If we don't do this, the parallax stops for a frame and continues.
 	else:
-		scroll_offset.x += 500 * -delta
+		scroll_offset.x += 500 * -Global.ParallaxSpeed
 
 
 func _on_thing_that_kills_us_body_entered(body):

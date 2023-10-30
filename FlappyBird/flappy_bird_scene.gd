@@ -27,11 +27,13 @@ func PAUSEPRESS():
 	#print("Pause Button Has Been Pressed")
 	# Shit kinda worked sometimes so I added this for convenience. 
 	# Not needed anymore.
+	$TextureButton.visible = not $TextureButton.visible
 	get_tree().paused = not get_tree().paused
 	$PauseScreen.visible = not $PauseScreen.visible
 
 
 func _on_unpause_pressed():
+	$TextureButton.visible = not $TextureButton.visible
 	get_tree().paused = not get_tree().paused
 	$PauseScreen.visible = not $PauseScreen.visible
 # The "Play" button

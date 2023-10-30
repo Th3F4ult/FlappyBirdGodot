@@ -112,7 +112,10 @@ func _on_area_2d_body_exited(body):
 		DEATH()
 func _on_easy_button_pressed():
 	dif = "E"
+	Global.ParallaxSpeed = 0.005
 func _on_medium_button_pressed():
 	dif = "M"
+	Global.ParallaxSpeed = 0.01
 func _on_hard_button_pressed():
 	dif = "H"
+	Global.ParallaxSpeed = 0.03
