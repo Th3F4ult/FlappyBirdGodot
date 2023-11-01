@@ -1,36 +1,18 @@
-# This script handles both Pipe "Generation" (Moving them to the next chunk)
-# and all the death screen logic, assigning a medal, and showing points in there.
-# "Exit" (Menu) and "Retry" (Retry) buttons are handled in  flappy_bird_scene.gd
 extends CharacterBody2D
 @onready var vars = get_node("/root/Global")
 var dif = "NoDifficulty"
 var DidWeDie = false
-# We could use something like adding a new variable "LastDifficulityUsed" and check
-# if it exists, then copy it for the next game
-
-
-
-var points = 0 # We set up the "points" variable, this is where we store the points
-var PIPERNG=RandomNumberGenerator.new() # RNG stuff
-#var pipe_scene = preload("res://FlappyBird/OtherPipes.tscn")
-#Not needed anymore
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
-#Since we don't control the pipes, nor they move in the Y axis, we just get rid of this
-
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+var points = 0 
+var PIPERNG=RandomNumberGenerator.new()
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	var y_range = PIPERNG.randf_range(100,1100)
 	var random_position=Vector2(500, y_range)
-	position = random_position # This could be done in a single variable, will fix.
-	$"../POINTS".add_theme_font_size_override("font_size",128) # Make it bigger for bigger point display
+	position = random_position
+	$"../POINTS".add_theme_font_size_override("font_size",128)
 	$"../POINTS".add_theme_constant_override("outline_size",8)
-
+	
 func _physics_process(delta):
-	#print(velocity.x, " Dif: ", dif)
-	#Stop spamming
 	if dif == "E":
 		velocity.x = -400
 	elif dif == "M":
@@ -39,54 +21,31 @@ func _physics_process(delta):
 		velocity.x = -1200
 	else:
 		velocity.x = 0 
-	# This last one is here just in case I missed anything, to have a safe value
-	# and not have the pipes stuck in nowhere forever
-	move_and_slide() # This is basically... the thing that makes it move
-
-
+	move_and_slide() 
 func DEATH():
 	if not DidWeDie: 
 		DidWeDie = true
 		vars.lastDif = dif
 		print(dif," > lastDif (",vars.lastDif,")")
-		# We save the last difficulty
-			# It's in reverse fucking idiot - Me to me
-		#print("This person died")
-		# Debugging stuff
-		velocity.x = 0 # Stop the pipe
-		$"../MenuButton/FINALPOINTS".text = str(points) # Show the score
-		
-		var HideableMedals = ["../MenuButton/Medal1", "../MenuButton/Medal2", "../MenuButton/Medal3", "../MenuButton/Medal4"]
-		
+		velocity.x = 0
+		$"../MenuButton/FINALPOINTS".text = str(points)
+		$"../MenuButton/Medal1".visible = false
+		$"../MenuButton/Medal2".visible = false
+		$"../MenuButton/Medal3".visible = false
+		$"../MenuButton/Medal4".visible = false
 		if points < 6:
-			for i in HideableMedals:
-				get_node(i).visible = false
-	# If we have less than 6, (5 or less) we have no medal
+			pass
 		if points < 11 and points > 5:
-			$"../MenuButton/Medal4".visible = false
-			$"../MenuButton/Medal3".visible = false 
-			$"../MenuButton/Medal2".visible = false
+			$"../MenuButton/Medal1".visible = true
 		elif points > 10 and points < 21:
-			$"../MenuButton/Medal4".visible = false
-			$"../MenuButton/Medal3".visible = false 
-			$"../MenuButton/Medal1".visible = false
+			$"../MenuButton/Medal2".visible = true
 		elif points > 20 and points < 31:
-			$"../MenuButton/Medal4".visible = false
-			$"../MenuButton/Medal1".visible = false 
-			$"../MenuButton/Medal2".visible = false
+			$"../MenuButton/Medal3".visible = true
 		else:
-			$"../MenuButton/Medal2".visible = false
-			$"../MenuButton/Medal3".visible = false 
-			$"../MenuButton/Medal1".visible = false
-	# Maybe this could be done BETTER with arrays, something like
-	# var Medals = [../MenuButton/Medal1, ../MenuButton/Medal2...] but I'm too
-	# lazy to actually do it
+			$"../MenuButton/Medal4".visible = true
 		dif = null
-	# Now that we've got all this we could maybe MAYBE keep it saved in the user's data
-	# That way if you close the program and open it again it keeps your difficulty
 	else:
 		print("We're already dead, not dying again")
-
 func AddPoints():
 	points = points + 1
 	$"../POINTS".text = str(points)
