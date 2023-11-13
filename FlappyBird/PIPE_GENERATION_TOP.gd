@@ -1,10 +1,9 @@
 extends CharacterBody2D
-@onready var vars = get_node("/root/Global")
+
 var dif = "NoDifficulty"
 var DidWeDie = false
 var points = 0 
 var PIPERNG=RandomNumberGenerator.new()
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	var y_range = PIPERNG.randf_range(100,1100)
 	var random_position=Vector2(500, y_range)
@@ -12,8 +11,8 @@ func _ready():
 	$"../POINTS".add_theme_font_size_override("font_size",128)
 	$"../POINTS".add_theme_constant_override("outline_size",8)
 	$"../POINTS".text = "0"
-	
 func _physics_process(delta):
+	print(position.x)
 	if dif == "E":
 		velocity.x = -400
 	elif dif == "M":
@@ -22,11 +21,13 @@ func _physics_process(delta):
 		velocity.x = -1200
 	else:
 		velocity.x = 0 
+	if position.x <= -1300:
+		position.x = 300
 	move_and_slide() 
 func DEATH():
 	if not DidWeDie: 
 		DidWeDie = true
-		vars.lastDif = dif
+		Global.lastDif = dif
 		velocity.x = 0
 		$"../MenuButton/FINALPOINTS".text = str(points)
 		$"../MenuButton/Medal1".visible = false
@@ -54,8 +55,8 @@ func _on_thing_that_counts_our_points_body_entered(body):
 		position.x = position.x + 1550
 		position.y = PIPERNG.randf_range(100,1100)
 func _on_start_btn_pressed():
-	if not vars.lastDif == null:
-		dif = vars.lastDif
+	if not Global.lastDif == null:
+		dif = Global.lastDif
 	else:
 		dif = "M"
 	print("Starting on ", dif, " difficulty")
