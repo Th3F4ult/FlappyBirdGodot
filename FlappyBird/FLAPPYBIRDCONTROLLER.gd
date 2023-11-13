@@ -1,6 +1,5 @@
 extends CharacterBody2D
 @onready var fly = $AnimatedSprite2D
-@onready var GlobalVars = get_node("/root/Global")
 const SPEED = 300.0
 const JUMP_VELOCITY = -1200.0
 var HasGameStarted = false
@@ -9,7 +8,7 @@ var points=0
 var gravity = 0
 func _ready():
 	fly.play("doingnothing")
-	GlobalVars.isDead = false
+	Global.isDead = false
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
