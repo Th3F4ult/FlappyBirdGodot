@@ -11,7 +11,7 @@ func _ready():
 	$"../POINTS".add_theme_font_size_override("font_size",128)
 	$"../POINTS".add_theme_constant_override("outline_size",8)
 	$"../POINTS".text = "0"
-func _physics_process(delta):
+func _physics_process(_delta):
 	print(position.x)
 	if dif == "E":
 		velocity.x = -400
@@ -22,7 +22,8 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0 
 	if position.x <= -1300:
-		position.x = 300
+		position.x = 500
+		print("Something went WRONG with pipes!\n Setting pipes to it's original position")
 	move_and_slide() 
 func DEATH():
 	if not DidWeDie: 
@@ -58,8 +59,7 @@ func _on_start_btn_pressed():
 	if not Global.lastDif == null:
 		dif = Global.lastDif
 	else:
-		dif = "M"
-	print("Starting on ", dif, " difficulty")
+		dif = "M"	
 func _on_thing_that_dings_body_entered(body):
 	if body.is_in_group("bird"):
 		$"../DingDingDings".play()

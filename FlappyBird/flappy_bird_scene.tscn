@@ -145,7 +145,6 @@ texture_pressed = ExtResource("13_qa48g")
 
 [node name="PauseScreen" type="Control" parent="."]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -186,11 +185,20 @@ offset_bottom = 1129.0
 
 [node name="DayNightToggle" type="TextureButton" parent="PauseScreen"]
 layout_mode = 0
-offset_left = 402.0
-offset_top = 1173.0
-offset_right = 530.0
-offset_bottom = 1301.0
+offset_left = 50.0
+offset_top = 795.0
+offset_right = 178.0
+offset_bottom = 923.0
 texture_normal = ExtResource("16_65uj3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseScreen"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 1849.0
+offset_right = 174.0
+offset_bottom = 1895.0
+text = "Flappy Bird Godot
+By Th3F4ult"
 
 [node name="PIPE_GENERATION_FIRST" type="CharacterBody2D" parent="."]
 script = ExtResource("9_n4kqx")
@@ -205,13 +213,13 @@ shape = SubResource("RectangleShape2D_dqao5")
 position = Vector2(986.5, 1360.5)
 shape = SubResource("RectangleShape2D_vfijs")
 
-[node name="Sprite2D" type="Sprite2D" parent="PIPE_GENERATION_FIRST"]
+[node name="PIPEPOINTINGDOWN" type="Sprite2D" parent="PIPE_GENERATION_FIRST"]
 z_index = -1
 position = Vector2(985, -794.75)
 scale = Vector2(1.95312, 2.00825)
 texture = ExtResource("16_0rj58")
 
-[node name="Sprite2D2" type="Sprite2D" parent="PIPE_GENERATION_FIRST"]
+[node name="PIPEPOINTINGUP" type="Sprite2D" parent="PIPE_GENERATION_FIRST"]
 z_index = -1
 position = Vector2(986.5, 1269.5)
 scale = Vector2(1.86719, 2.0165)
