@@ -11,6 +11,7 @@ func _ready():
 	position = random_position
 	$"../POINTS".add_theme_font_size_override("font_size",128)
 	$"../POINTS".add_theme_constant_override("outline_size",8)
+	$"../POINTS".text = "0"
 	
 func _physics_process(delta):
 	if dif == "E":
@@ -26,15 +27,12 @@ func DEATH():
 	if not DidWeDie: 
 		DidWeDie = true
 		vars.lastDif = dif
-		print(dif," > lastDif (",vars.lastDif,")")
 		velocity.x = 0
 		$"../MenuButton/FINALPOINTS".text = str(points)
 		$"../MenuButton/Medal1".visible = false
 		$"../MenuButton/Medal2".visible = false
 		$"../MenuButton/Medal3".visible = false
 		$"../MenuButton/Medal4".visible = false
-		if points < 6:
-			pass
 		if points < 11 and points > 5:
 			$"../MenuButton/Medal1".visible = true
 		elif points > 10 and points < 21:
@@ -44,8 +42,7 @@ func DEATH():
 		elif points > 32:
 			$"../MenuButton/Medal4".visible = true
 		dif = null
-	else:
-		print("We're already dead, not dying again")
+
 func AddPoints():
 	points = points + 1
 	$"../POINTS".text = str(points)

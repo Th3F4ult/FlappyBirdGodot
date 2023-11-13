@@ -106,7 +106,7 @@ texture = ExtResource("3_q6643")
 stretch_mode = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["bird"]]
-position = Vector2(-4, -213)
+position = Vector2(-93, -46)
 script = ExtResource("2_m6gt8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
@@ -145,6 +145,7 @@ texture_pressed = ExtResource("13_qa48g")
 
 [node name="PauseScreen" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
