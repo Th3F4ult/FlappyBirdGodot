@@ -41,7 +41,7 @@ func DEATH():
 			$"../MenuButton/Medal2".visible = true
 		elif points > 20 and points < 31:
 			$"../MenuButton/Medal3".visible = true
-		else:
+		elif points > 32:
 			$"../MenuButton/Medal4".visible = true
 		dif = null
 	else:

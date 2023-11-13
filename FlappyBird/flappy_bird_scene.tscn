@@ -105,6 +105,7 @@ texture = ExtResource("3_q6643")
 stretch_mode = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["bird"]]
+position = Vector2(-4, -213)
 script = ExtResource("2_m6gt8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
