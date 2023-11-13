@@ -29,8 +29,9 @@ func _on_menu_pressed():
 func _on_day_night_toggle_pressed():
 	Global.DayNight = not Global.DayNight
 	if Global.DayNight:
-		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/LIGHT_MODE_BTN.png")
+		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/NIGHT_MODE_BTN.png")
 		Global.mode = "night"
 	else:
-		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/NIGHT_MODE_BTN.png")
+		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/LIGHT_MODE_BTN.png")
 		Global.mode = "day"
+
