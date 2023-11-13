@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://deh4pg0c145ul"]
+[gd_scene load_steps=38 format=3 uid="uid://deh4pg0c145ul"]
 
 [ext_resource type="Script" path="res://FlappyBird/flappy_bird_scene.gd" id="1_78h6s"]
 [ext_resource type="Script" path="res://FlappyBird/PARALLAX.gd" id="2_jl8a7"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://vkni07jxvcmg" path="res://FlappyBird/assets/BUTTONS_AND_UI/UnPause.png" id="14_5i4gh"]
 [ext_resource type="Texture2D" uid="uid://0588akrpa2i7" path="res://FlappyBird/assets/BUTTONS_AND_UI/DifSel.png" id="15_ii17f"]
 [ext_resource type="Texture2D" uid="uid://be7tp4a1f1ort" path="res://FlappyBird/assets/Other_Stuff_Images/PipeDOWN.png" id="16_0rj58"]
+[ext_resource type="Texture2D" uid="uid://dwlgsylvkkvmd" path="res://FlappyBird/assets/BUTTONS_AND_UI/LIGHT_MODE_BTN.png" id="16_65uj3"]
 [ext_resource type="Texture2D" uid="uid://trff4ysngiea" path="res://FlappyBird/assets/Other_Stuff_Images/PipeUP.png" id="17_mcd1l"]
 [ext_resource type="AudioStream" uid="uid://dfijvcc2c8gia" path="res://FlappyBird/assets/sound/sfx_point.mp3" id="18_3l0h0"]
 [ext_resource type="Texture2D" uid="uid://dcv1ytax3oj2n" path="res://FlappyBird/assets/BUTTONS_AND_UI/ClickToStart.png" id="19_oparp"]
@@ -182,6 +183,14 @@ offset_top = 1033.0
 offset_right = 510.0
 offset_bottom = 1129.0
 
+[node name="DayNightToggle" type="TextureButton" parent="PauseScreen"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 1173.0
+offset_right = 530.0
+offset_bottom = 1301.0
+texture_normal = ExtResource("16_65uj3")
+
 [node name="PIPE_GENERATION_FIRST" type="CharacterBody2D" parent="."]
 script = ExtResource("9_n4kqx")
 
@@ -302,6 +311,7 @@ stream = ExtResource("28_1fk3b")
 [connection signal="pressed" from="PauseScreen/EasyButton" to="PIPE_GENERATION_FIRST" method="_on_easy_button_pressed"]
 [connection signal="pressed" from="PauseScreen/MediumButton" to="PIPE_GENERATION_FIRST" method="_on_medium_button_pressed"]
 [connection signal="pressed" from="PauseScreen/HardButton" to="PIPE_GENERATION_FIRST" method="_on_hard_button_pressed"]
+[connection signal="pressed" from="PauseScreen/DayNightToggle" to="." method="_on_day_night_toggle_pressed"]
 [connection signal="body_entered" from="PIPE_GENERATION_FIRST/Thing_that_kills_us" to="ParallaxBackground" method="_on_thing_that_kills_us_body_entered"]
 [connection signal="body_entered" from="PIPE_GENERATION_FIRST/Thing_that_kills_us" to="CharacterBody2D" method="_on_thing_that_kills_us_body_entered"]
 [connection signal="body_entered" from="PIPE_GENERATION_FIRST/Thing_that_kills_us" to="PIPE_GENERATION_FIRST" method="_on_thing_that_kills_us_body_entered"]
