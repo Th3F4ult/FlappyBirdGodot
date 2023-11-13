@@ -1,5 +1,5 @@
 extends Node2D
-var DayNight = false
+
 
 func _ready():
 	$PauseScreen.visible = false
@@ -27,10 +27,10 @@ func _on_menu_pressed():
 
 
 func _on_day_night_toggle_pressed():
-	DayNight = not DayNight
-	if DayNight:
-		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/NIGHT_MODE_BTN.png")
-		Global.mode = "day"
-	else:
+	Global.DayNight = not Global.DayNight
+	if Global.DayNight:
 		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/LIGHT_MODE_BTN.png")
 		Global.mode = "night"
+	else:
+		$PauseScreen/DayNightToggle.texture_normal = load("res://FlappyBird/assets/BUTTONS_AND_UI/NIGHT_MODE_BTN.png")
+		Global.mode = "day"
