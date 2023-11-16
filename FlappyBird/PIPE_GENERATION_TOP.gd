@@ -61,7 +61,7 @@ func _on_thing_that_counts_our_points_body_entered(body):
 		$Thing_that_kills_us/CollisionShape2D.position.y = SavedRNG_1
 		$Thing_that_kills_us/PIPEPOINTINGDOWN.position.y = SavedRNG_1
 		$Thing_that_kills_us/PIPEPOINTINGUP.position.y = SavedRNG_2
-		$Thing_that_kills_us/CollisionShape2D2.position.y = SavedRNG_2
+		$Thing_that_kills_us/CollisionShape2D2.position.y = SavedRNG_2+100
 func _on_start_btn_pressed():
 	if not Global.lastDif == null:
 		dif = Global.lastDif
