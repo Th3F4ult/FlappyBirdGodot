@@ -4,6 +4,9 @@ var dif = "NoDifficulty"
 var DidWeDie = false
 var points = 0 
 var PIPERNG=RandomNumberGenerator.new()
+var SavedRNG_1
+var SavedRNG_2
+
 func _ready():
 	var y_range = PIPERNG.randf_range(100,1100)
 	var random_position=Vector2(500, y_range)
@@ -12,7 +15,6 @@ func _ready():
 	$"../POINTS".add_theme_constant_override("outline_size",8)
 	$"../POINTS".text = "0"
 func _physics_process(_delta):
-	print(position.x)
 	if dif == "E":
 		velocity.x = -400
 	elif dif == "M":
@@ -23,7 +25,6 @@ func _physics_process(_delta):
 		velocity.x = 0 
 	if position.x <= -1300:
 		position.x = 500
-		print("Something went WRONG with pipes!\n Setting pipes to it's original position")
 	move_and_slide() 
 func DEATH():
 	if not DidWeDie: 
@@ -53,8 +54,14 @@ func _on_thing_that_kills_us_body_entered(ThingThatEnteredTheArea):
 		DEATH()
 func _on_thing_that_counts_our_points_body_entered(body):
 	if body.is_in_group("bird"):
-		position.x = position.x + 1550
-		position.y = PIPERNG.randf_range(100,1100)
+		position.x = position.x + 1500
+#		position.y = PIPERNG.randf_range(100,1100)
+		SavedRNG_1 = PIPERNG.randf_range(-300,-1000)
+		SavedRNG_2 = PIPERNG.randf_range(1500,1800)
+		$Thing_that_kills_us/CollisionShape2D.position.y = SavedRNG_1
+		$Thing_that_kills_us/PIPEPOINTINGDOWN.position.y = SavedRNG_1
+		$Thing_that_kills_us/PIPEPOINTINGUP.position.y = SavedRNG_2
+		$Thing_that_kills_us/CollisionShape2D2.position.y = SavedRNG_2
 func _on_start_btn_pressed():
 	if not Global.lastDif == null:
 		dif = Global.lastDif

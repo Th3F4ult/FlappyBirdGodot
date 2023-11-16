@@ -85,7 +85,7 @@ size = Vector2(247.25, 1588)
 size = Vector2(241, 1773)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2h8ut"]
-size = Vector2(59, 2058.5)
+size = Vector2(59, 4595.25)
 
 [node name="FlappyBirdScene" type="Node2D"]
 script = ExtResource("1_78h6s")
@@ -209,21 +209,21 @@ script = ExtResource("9_n4kqx")
 position = Vector2(984.625, -794)
 shape = SubResource("RectangleShape2D_dqao5")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PIPE_GENERATION_FIRST/Thing_that_kills_us"]
-position = Vector2(986.5, 1360.5)
-shape = SubResource("RectangleShape2D_vfijs")
-
-[node name="PIPEPOINTINGDOWN" type="Sprite2D" parent="PIPE_GENERATION_FIRST"]
+[node name="PIPEPOINTINGDOWN" type="Sprite2D" parent="PIPE_GENERATION_FIRST/Thing_that_kills_us"]
 z_index = -1
 position = Vector2(985, -794.75)
 scale = Vector2(1.95312, 2.00825)
 texture = ExtResource("16_0rj58")
 
-[node name="PIPEPOINTINGUP" type="Sprite2D" parent="PIPE_GENERATION_FIRST"]
+[node name="PIPEPOINTINGUP" type="Sprite2D" parent="PIPE_GENERATION_FIRST/Thing_that_kills_us"]
 z_index = -1
 position = Vector2(986.5, 1269.5)
 scale = Vector2(1.86719, 2.0165)
 texture = ExtResource("17_mcd1l")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PIPE_GENERATION_FIRST/Thing_that_kills_us"]
+position = Vector2(986.5, 1360.5)
+shape = SubResource("RectangleShape2D_vfijs")
 
 [node name="Thing that counts our points" type="Area2D" parent="PIPE_GENERATION_FIRST"]
 
@@ -234,7 +234,7 @@ shape = SubResource("RectangleShape2D_2h8ut")
 [node name="ThingThatDings" type="Area2D" parent="PIPE_GENERATION_FIRST"]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PIPE_GENERATION_FIRST/ThingThatDings"]
-position = Vector2(1159, 1028)
+position = Vector2(1159, -240.375)
 shape = SubResource("RectangleShape2D_2h8ut")
 
 [node name="POINTS" type="Label" parent="."]
