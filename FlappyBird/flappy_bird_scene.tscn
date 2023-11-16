@@ -256,7 +256,6 @@ texture_normal = ExtResource("19_oparp")
 stretch_mode = 3
 
 [node name="MenuButton" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(550, 971)
 texture = ExtResource("20_8c6on")
 
@@ -277,10 +276,10 @@ position = Vector2(116, 35)
 texture = ExtResource("24_xg8ix")
 
 [node name="RETRY" type="TextureButton" parent="MenuButton"]
-offset_left = -168.0
-offset_top = 155.0
-offset_right = 145.0
-offset_bottom = 262.0
+offset_left = -550.0
+offset_top = -971.0
+offset_right = 530.0
+offset_bottom = 949.0
 
 [node name="RetryButton" type="Sprite2D" parent="MenuButton"]
 position = Vector2(-16, 207)
