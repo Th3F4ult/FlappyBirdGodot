@@ -28,6 +28,8 @@ func _on_start_btn_pressed():
 			velocity.y = JUMP_VELOCITY
 			$"../start_btn".visible = false
 			$"../Flap".play()
+			$"../TextureButton".visible = true
+			$"../POINTS".visible = true
 func _on_thing_that_kills_us_body_entered(body):
 	if body.is_in_group("bird"):
 		HasGameStarted = false

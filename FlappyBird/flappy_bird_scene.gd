@@ -5,7 +5,8 @@ func _ready():
 	$PauseScreen.visible = false
 	$MenuButton.visible = false
 	$MenuButton/FINALPOINTS.add_theme_font_size_override("font_size", 96)
-
+	$TextureButton.visible = false
+	$POINTS.visible = false
 func _process(delta):
 	if Global.mode == "night":
 		$ParallaxBackground/ParallaxLayer/TextureRect.texture = load("res://FlappyBird/assets/Other_Stuff_Images/PARBACKGRNG.png")
