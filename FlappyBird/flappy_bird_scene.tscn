@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://deh4pg0c145ul"]
+[gd_scene load_steps=39 format=3 uid="uid://deh4pg0c145ul"]
 
 [ext_resource type="Script" path="res://FlappyBird/flappy_bird_scene.gd" id="1_78h6s"]
 [ext_resource type="Script" path="res://FlappyBird/PARALLAX.gd" id="2_jl8a7"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://trff4ysngiea" path="res://FlappyBird/assets/Other_Stuff_Images/PipeUP.png" id="17_mcd1l"]
 [ext_resource type="AudioStream" uid="uid://dfijvcc2c8gia" path="res://FlappyBird/assets/sound/sfx_point.mp3" id="18_3l0h0"]
 [ext_resource type="Texture2D" uid="uid://dcv1ytax3oj2n" path="res://FlappyBird/assets/BUTTONS_AND_UI/ClickToStart.png" id="19_oparp"]
+[ext_resource type="FontFile" uid="uid://760jx3grg4li" path="res://FlappyBird/assets/FONTS/FlappyBirdRegular-9Pq0.ttf" id="20_6rjpa"]
 [ext_resource type="Texture2D" uid="uid://dp6ohl4d54ctu" path="res://FlappyBird/assets/Other_Stuff_Images/MenuButton.png" id="20_8c6on"]
 [ext_resource type="Texture2D" uid="uid://b0skgii3b34t" path="res://FlappyBird/assets/Medals/Medal_1.png" id="21_eltgp"]
 [ext_resource type="Texture2D" uid="uid://ch81h76np0hop" path="res://FlappyBird/assets/Medals/Medal_2.png" id="22_ch2kf"]
@@ -241,6 +242,12 @@ shape = SubResource("RectangleShape2D_2h8ut")
 offset_top = -2.0
 offset_right = 1080.0
 offset_bottom = 137.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("20_6rjpa")
 horizontal_alignment = 1
 
 [node name="DingDingDings" type="AudioStreamPlayer2D" parent="."]
@@ -300,6 +307,9 @@ offset_left = -191.0
 offset_top = -30.0
 offset_right = -87.0
 offset_bottom = 74.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("20_6rjpa")
 
 [node name="Flap" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_tccil")

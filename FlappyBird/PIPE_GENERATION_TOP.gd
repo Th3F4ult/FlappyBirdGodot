@@ -11,9 +11,10 @@ func _ready():
 	var y_range = PIPERNG.randf_range(100,1100)
 	var random_position=Vector2(500, y_range)
 	position = random_position
-	$"../POINTS".add_theme_font_size_override("font_size",128)
-	$"../POINTS".add_theme_constant_override("outline_size",8)
+	$"../POINTS".add_theme_font_size_override("font_size",256)
+	$"../POINTS".add_theme_constant_override("outline_size",32)
 	$"../POINTS".text = "0"
+	$"../MenuButton/FINALPOINTS".add_theme_constant_override("outline_size",16)
 func _physics_process(_delta):
 	if dif == "E":
 		velocity.x = -400

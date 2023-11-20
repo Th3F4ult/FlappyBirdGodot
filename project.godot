@@ -35,6 +35,13 @@ window/handheld/orientation=1
 import/blender/enabled=false
 import/fbx/enabled=false
 
+[importer_defaults]
+
+font_data_bmfont={
+"compress": true,
+"fallbacks": []
+}
+
 [input]
 
 clickedortapped={
